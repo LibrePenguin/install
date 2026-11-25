@@ -23,18 +23,18 @@ else
 fi
 
 # Install my dotfiles
-echo "Do you want to install styrmans dotfiles? (y/n)"
+echo "Do you want to install LibrePenguins dotfiles? (y/n)"
 read answer
 
 if [ "$answer" = "y" ]; then
     echo "Cloning my dotfiles"
     cd
-    git clone https://github.com/styrman-g/dotfiles.git
+    git clone https://github.com/LibrePenguin/dotfiles.git
     sudo apt install lsd curl
     cd
     curl -sS https://starship.rs/install.sh | sh
 elif [ "$answer" = "n" ]; then
-    echo "Dont want styrmans dotfiles???? ok."
+    echo "Dont want LibrePenguins dotfiles???? ok."
 else
     echo "Answer yes or no please"
 fi
@@ -79,12 +79,8 @@ if [ "$answer" = "y" ]; then
     sudo apt install flatpak
     flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
     echo "Installing some flatpaks"
-    flatpak install flathub com.synology.SynologyDrive
-    flatpak install flathub io.github.flattool.Warehouse
-    flatpak install flathub me.proton.Mail
-    flatpak install flathub com.protonvpn.www
-    flatpak install flathub org.onlyoffice.desktopeditors
     flatpak install flathub com.brave.Browser
+    flatpak install flathub md.obsidian.Obsidian
 elif [ "$answer" = "n" ]; then
     echo "Setup flatpak later"
 else
@@ -92,7 +88,7 @@ else
 fi
 
 # Installing all sowtwere that i nead
-echo "Do you want to install all the programs that styrman uses? (y/n)"
+echo "Do you want to install all the programs that LibrePenguin uses? (y/n)"
 read answer
 
 if [ "$answer" = "y" ]; then
@@ -100,6 +96,36 @@ if [ "$answer" = "y" ]; then
     sudo apt install keepassxc calibre mpv htop
 elif [ "$answer" = "n" ]; then
     echo "Do it later"
+else
+    echo "OK"
+fi
+
+# Setup Tailscale
+echo "Do you want to install Tailscale? (y/n)"
+read answer
+
+if [ "$answer" = "y"  ]; then
+    echo "Installing Tailscale"
+    curl -fsSL https://tailscale.com/install.sh | sh
+elif [ "$answer" = "n" ]; then
+    echo "You can set it up later with the command: curl -fsSL https://tailscale.com/install.sh | sh"
+fi
+
+
+# Install a LoginManger
+echo "Do you want to set up lightDM login manager? (y/n)"
+read answer
+
+if [ "$answer" = "y" ]; then
+    echo "Installing lightdm"
+    sudo apt install lightdm lightdm-gtk-greeter
+    echo "Enable lightdm"
+    sudo systemctl enable lightdm
+    sudo systemctl start lightdm
+    echo "You can now reboot your computer"
+
+elif [ "$answer" = "n" ]; then
+    echo "Setup lightdm later"
 else
     echo "OK"
 fi
