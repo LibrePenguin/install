@@ -15,7 +15,7 @@ read answer
 
 if [ "$answer" = "y" ]; then
     echo "Installing Sway with dependencis."
-    sudo apt install sway waybar rofi alacritty dunst swaylock swayidle swaybg xdg-desktop-portal-wlr xwayland
+    sudo apt install sway foot-themes waybar rofi alacritty dunst swaylock swayidle swaybg xdg-desktop-portal-wlr xwayland
 elif [ "$answer" = "n" ]; then
     echo "Do not install Sway"
 else
